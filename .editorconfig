@@ -1,0 +1,7 @@
+# top-most editor config file
+root = true
+
+# 2 space indentation
+[{.,}*.{js,ts,json,yml}]
+indent_style = tab
+trim_trailing_whitespace = true

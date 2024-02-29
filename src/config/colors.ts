@@ -1,0 +1,15 @@
+export default {
+	appTheme: '#2EB851',
+	linkText: '#2A78D5',
+	black: '#000000',
+	white: '#FFFFFF',
+	transparent: 'transparent',
+	darkGray: '#9090A5',
+	lightGray: '#E0E0E0',
+	blackGray: '#9494A7',
+	lightBlack: '#414141',
+	divider: '#DFDFDF',
+	socialBtnsBorder: '#DDDDDD',
+	notificationBgViewColor: '#FDB515',
+	loaderColorWithAlpha: '#00000066',
+};
