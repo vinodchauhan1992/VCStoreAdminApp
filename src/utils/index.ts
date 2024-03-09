@@ -1,5 +1,5 @@
 import * as settingsUtils from './settingsUtils';
-import * as enumUtils from './enumUtils';
+import * as enumsUtils from './enumsUtils';
 import * as commonUtils from './commonUtils';
 
-export { settingsUtils, enumUtils, commonUtils };
+export { settingsUtils, enumsUtils, commonUtils };

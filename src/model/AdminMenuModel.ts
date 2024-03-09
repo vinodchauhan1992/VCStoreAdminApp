@@ -1,4 +1,4 @@
-import { enumUtils } from '../utils';
+import { enumsUtils } from '../utils';
 
 export interface AdminMenuDataModel {
 	id: string;
@@ -13,7 +13,7 @@ export interface AdminMenuDataModel {
 	__v: number;
 }
 
-export type AdminMenuModelStatusTypes = enumUtils.ResultTypeEnum;
+export type AdminMenuModelStatusTypes = enumsUtils.ResultTypeEnum;
 
 export interface AdminMenuModel {
 	status: AdminMenuModelStatusTypes;
