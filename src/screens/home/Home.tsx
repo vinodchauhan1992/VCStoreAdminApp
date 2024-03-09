@@ -6,7 +6,7 @@ import { AdminMenusState, SettingsOptions, useAppDispatch, useAppSelector } from
 import config from '../../config';
 import { youtubeImagePlaceholder } from '../../../assets/images';
 import { settingsUtils } from '../../utils';
-import { AdminMenuDataModel, AdminMenuModel } from '../../model/AdminMenuModel';
+import { AdminMenuDataModel } from '../../model/AdminMenuModel';
 
 const Home = ({ navigation }: any): JSX.Element => {
   const { layout, flatListContentContainerStyle } = HomeStyles();
