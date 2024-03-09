@@ -1,6 +1,5 @@
 import { createSlice, createAction, PayloadAction } from '@reduxjs/toolkit';
-import { UserModel } from '../model/UserModel';
-import { MainStateTypes, SettingsOptionsStateTypes, UserStateTypes } from '../types/statesTypes';
+import { MainStateTypes, SettingsOptionsStateTypes } from '../types/statesTypes';
 import { SettingsModel } from '../model/SettingsModel';
 
 /* Signout Action */

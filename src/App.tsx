@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigation from './navigations';
-import { VCYLoader } from './components';
+import { VCSALoader } from './components';
 import { themeConfig } from './themes';
 import { ThemeState, useAppDispatch, useAppSelector } from './states';
 import { PaperProvider } from 'react-native-paper';
@@ -11,7 +11,8 @@ const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const colorScheme = useColorScheme();
 
-  const isDarkTheme = useAppSelector(ThemeState.selectSettingsTheme);
+  const isDarkTheme = true;
+  // useAppSelector(ThemeState.selectSettingsTheme);
 
   React.useEffect(() => {
     if (colorScheme === 'dark') {
@@ -25,7 +26,7 @@ const App = (): JSX.Element => {
         theme={themeConfig.getNavigationAdaptiveTheme(isDarkTheme ? 'dark' : 'light')}>
         <StatusBar barStyle={isDarkTheme ? 'light-content' : 'dark-content'} />
         <RootNavigation />
-        <VCYLoader />
+        <VCSALoader />
       </NavigationContainer>
     </PaperProvider>
   );

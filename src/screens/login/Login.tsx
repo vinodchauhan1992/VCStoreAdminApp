@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react';
-import { Alert, SafeAreaView, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, SafeAreaView, View } from 'react-native';
 import LoginStyles from './LoginStyles';
-import { Surface, Text, Button, Snackbar } from 'react-native-paper';
-import config from '../../config';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-import { authUtils } from '../../utils';
-import { UI, User, useAppDispatch } from '../../states';
-import auth from '@react-native-firebase/auth';
+import { Button, Surface, Text } from 'react-native-paper';
+import { useAppDispatch } from '../../states';
+import { VCSATextField } from '../../components';
 
 const Login = ({ navigation }: any): JSX.Element => {
   const {
@@ -18,42 +11,25 @@ const Login = ({ navigation }: any): JSX.Element => {
     surface,
     mainHeadingText,
     subHeadingText,
-    googleSigninButtonStyle,
-    googleSigninButtonWrapperStyle,
+    textFieldWrapperStyle,
+    loginButtonStyle,
   } = LoginStyles();
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    authUtils.configureGoogleSignIn();
-  });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const onLoginPress = async () => {
-    dispatch(UI.showLoader(true));
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      const credential = auth.GoogleAuthProvider.credential(
-        userInfo?.idToken,
-        userInfo?.serverAuthCode ?? '',
-      );
-      await auth().signInWithCredential(credential);
-      dispatch(User.saveUser(userInfo));
-      dispatch(UI.showLoader(false));
-    } catch (error: any) {
-      dispatch(UI.showLoader(false));
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        Alert.alert('Error!', 'User cancelled the login flow', [{ text: 'Ok' }]);
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Alert.alert('Error!', 'Play services not available', [{ text: 'Ok' }]);
-      } else {
-        Alert.alert(
-          'Error!',
-          `Some error occurred. Please try again later. Code: ${error.code}, Message: ${error.message}`,
-          [{ text: 'Ok' }],
-        );
-      }
+    if (!username || username === '') {
+      Alert.alert('Error!', 'Username is required.', [{ text: 'Ok' }]);
+      return;
     }
+    if (!password || password === '') {
+      Alert.alert('Error!', 'Password is required.', [{ text: 'Ok' }]);
+      return;
+    }
+    dispatch({ type: 'LOGIN_USER', payload: { username: username, password: password } });
   };
 
   return (
@@ -63,16 +39,26 @@ const Login = ({ navigation }: any): JSX.Element => {
           Welcome!
         </Text>
         <Text variant="titleSmall" style={subHeadingText}>
-          Create or Login to your account
+          Login to your account
         </Text>
-        <View style={googleSigninButtonWrapperStyle}>
-          <GoogleSigninButton
-            style={googleSigninButtonStyle}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={onLoginPress}
+        <View style={textFieldWrapperStyle}>
+          <VCSATextField
+            placeholder="Enter username"
+            label="Enter username"
+            onChangeText={(text) => setUsername(text)}
+            value={username}
+            keyboardType="default"
+          />
+          <VCSATextField
+            placeholder="Enter password"
+            label="Enter password"
+            onChangeText={(text) => setPassword(text)}
+            value={password}
           />
         </View>
+        <Button mode="elevated" style={loginButtonStyle} onPress={() => onLoginPress()}>
+          Login
+        </Button>
       </Surface>
     </SafeAreaView>
   );

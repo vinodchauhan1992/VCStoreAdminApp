@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 	 * host of the machine in order to connect.
 	 */
 	reactotronConfig = Reactotron.configure({
-		name: 'VCYoutube', // name of the product
+		name: 'VCStoreAdminApp', // name of the product
 		host: '127.0.0.1', // default is localhost (on android don't forget to `adb reverse tcp:9090 tcp:9090`)
 	})
 		.setAsyncStorageHandler(AsyncStorage)
@@ -34,7 +34,21 @@ if (process.env.NODE_ENV !== 'production') {
 		.use(sagaPlugin())
 		.use(reactotronRedux());
 
-	console.tron = Reactotron;
+	// swizzle the old one
+	const yeOldeConsoleLog = console.log;
+
+	// make a new one
+	console.log = (...args) => {
+		// always call the old one, because React Native does magic swizzling too
+		yeOldeConsoleLog(...args);
+
+		// send this off to Reactotron.
+		Reactotron.display({
+			name: 'CONSOLE.LOG',
+			value: args,
+			preview: args.length > 0 && typeof args[0] === 'string' ? args[0] : null,
+		});
+	};
 	Reactotron.connect(); // Connect with reactotron
 	Reactotron.clear(); // Clear the logs.
 	sagasMonitor = Reactotron.createSagaMonitor();

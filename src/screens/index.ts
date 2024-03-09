@@ -3,8 +3,4 @@ export { default as Login } from './login';
 export { default as Home } from './home';
 export { default as ForgotPassword } from './forgotPassword';
 export { default as Settings } from './settings';
-export { default as VideosList } from './videos';
 export { default as Profile } from './profile';
-export { default as Video } from './video';
-export { default as Comments } from './comments';
-export { default as Replies } from './replies';

@@ -1,7 +1,6 @@
-export { default as VCYTextField } from './vcyTextField/VCYTextField';
-export { default as VCYDatePicker } from './vcyDatePicker/VCYDatePicker';
-export { default as VCYNavigationHeaderButton } from './vcyNavigationHeaderButton/VCYNavigationHeaderButton';
-export { default as VCYLoader } from './vcyLoader/VCYLoader';
-export { default as VCYCard } from './vcyCard/VCYCard';
-export { default as VCYProfileHeaderBackground } from './vcyProfileHeaderBackground/VCYProfileHeaderBackground';
-export { default as VCYCommentCard } from './vcyCommentCard/VCYCommentCard';
+export { default as VCSATextField } from './vcsaTextField/VCSATextField';
+export { default as VCSADatePicker } from './vcsaDatePicker/VCSADatePicker';
+export { default as VCSANavigationHeaderButton } from './vcsaNavigationHeaderButton/VCSANavigationHeaderButton';
+export { default as VCSALoader } from './vcsaLoader/VCSALoader';
+export { default as VCSACard } from './vcsaCard/VCSACard';
+export { default as VCSAProfileHeaderBackground } from './vcsaProfileHeaderBackground/VCSAProfileHeaderBackground';

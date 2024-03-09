@@ -11,13 +11,13 @@ export default () => {
 		// color: config.colors.darkGray,
 	};
 
-	const googleSigninButtonWrapperStyle: ViewStyle = {
-		alignItems: 'center',
+	const textFieldWrapperStyle: ViewStyle = {
+		// alignItems: 'center',
+		marginTop: 24,
 	};
 
 	const layout: ViewStyle = {
 		flex: 1,
-		alignItems: 'center',
 		justifyContent: 'center',
 	};
 
@@ -30,12 +30,9 @@ export default () => {
 		},
 		mainHeadingText,
 		subHeadingText,
-		googleSigninButtonWrapperStyle,
-		googleSigninButtonStyle: {
-			width: 192,
-			height: 48,
-			marginTop: 30,
-			marginBottom: 15,
+		textFieldWrapperStyle,
+		loginButtonStyle: {
+			marginTop: 24,
 		},
 	};
 };

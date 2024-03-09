@@ -10,14 +10,7 @@ const persistConfig = {
 	key: 'root',
 	storage: AsyncStorage,
 	blacklist: ['ui'],
-	whitelist: [
-		'user',
-		'videoCategories',
-		'videoList',
-		'selectedVideoCategory',
-		'selectedVideo',
-		'themeState',
-	], //persisted reducers
+	whitelist: ['loggedInUser', 'themeState'], //persisted reducers
 };
 
 /* boolean if environment is dev then true otherwise false */

@@ -1,11 +1,8 @@
 export default {
 	WELCOME: 'Welcome,',
 	SIGN_IN_SUBTITLE: 'Sign In to continue',
-	REGISTER: 'Register',
-	HOME_TITLE: 'Video categories',
-	VIDEOS_LIST_TITLE: 'Videos',
+	HOME_TITLE: 'Dashboard',
 	SETTINGS_TITLE: 'Settings',
-	VIDEO_TITLE: 'Video',
 	LOADING: 'Loading...',
 	PASSWORD_PLACEHOLDER: 'Password',
 	FIRST_NAME_PLACEHOLDER: 'First name',
@@ -19,6 +16,4 @@ export default {
 	ALREADY_HAVE_ACCOUNT: 'Already have an account? ',
 	LOGIN_PLACEHOLDER: 'Login',
 	PROFILE_TITLE: 'My profile',
-	COMMENTS_TITLE: 'Comments',
-	REPLIES_TITLE: 'Replies',
 };

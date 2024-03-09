@@ -4,6 +4,7 @@ import routes from '../config/routes';
 import strings from '../config/strings';
 import vectorIcons from '../config/vectorIcons';
 import constants from '../config/constants';
+import env from '../config/env';
 
 export interface Config {
 	colors: typeof colors;
@@ -12,4 +13,5 @@ export interface Config {
 	strings: typeof strings;
 	vectorIcons: typeof vectorIcons;
 	constants: typeof constants;
+	env: typeof env;
 }

@@ -1,66 +1,54 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import HomeStyles from './HomeStyles';
-import { Text } from 'react-native-paper';
-import { VCYCard } from '../../components';
-import reactotron from 'reactotron-react-native';
-import {
-  RootState,
-  SettingsOptions,
-  UI,
-  User,
-  VideoCategories,
-  useAppDispatch,
-  useAppSelector,
-} from '../../states';
-import { VideoCategoriesModel } from '../../model/VideoCategoriesModel';
+import { VCSACard } from '../../components';
+import { AdminMenusState, SettingsOptions, useAppDispatch, useAppSelector } from '../../states';
 import config from '../../config';
 import { youtubeImagePlaceholder } from '../../../assets/images';
 import { settingsUtils } from '../../utils';
-import {
-  saveSelectedVideoCategoryIDData,
-  saveSelectedVideoCategoryNameData,
-} from '../../states/SelectedVideoCategory';
+import { AdminMenuDataModel, AdminMenuModel } from '../../model/AdminMenuModel';
 
 const Home = ({ navigation }: any): JSX.Element => {
   const { layout, flatListContentContainerStyle } = HomeStyles();
 
   const dispatch = useAppDispatch();
-  const videoCategoriesEtag = useAppSelector(VideoCategories.selectVideoCategoriesEtag);
-  const videoCategoriesData = useAppSelector(VideoCategories.selectVideoCategoriesData);
+
+  const adminMenusArr: AdminMenuDataModel[] = useAppSelector(
+    AdminMenusState.selectAdminMenusDataArraySelector,
+  );
+
+  const getDashboardData = () => {
+    dispatch({ type: 'GET_ALL_ADMIN_MENUS', payload: {} });
+  };
 
   const addSettings = () => {
     dispatch(SettingsOptions.saveSettingsData(settingsUtils.getSettingsData()));
   };
 
   useEffect(() => {
-    if (!videoCategoriesEtag || videoCategoriesEtag === '') {
-      dispatch({ type: 'GET_VIDEO_CATEGORIES', payload: {} });
-    }
     addSettings();
+    getDashboardData();
   }, []);
 
-  const onCardPress = (item: VideoCategoriesModel) => {
-    dispatch(saveSelectedVideoCategoryIDData(item?.id));
-    dispatch(saveSelectedVideoCategoryNameData(item?.snippet?.title));
-    navigation.navigate(config.routes.VIDEOS_LIST);
-  };
+  const onCardPress = (item: any) => {};
 
   const renderVideoCategoriesItem = ({
     item,
     index,
   }: {
-    item: VideoCategoriesModel;
+    item: AdminMenuDataModel;
     index: number;
   }) => {
     return (
-      <VCYCard
+      <VCSACard
         key={`${index.toString()}`}
         index={index}
-        cardTitle={item?.snippet?.title ?? ''}
+        cardTitle={item?.menuTitle ?? ''}
         onCardPress={() => onCardPress(item)}
+        iconType="chevron"
+        cardSubtitle={item?.description ?? ''}
         // cardSubtitle={`Channel id: ${item?.snippet?.channelId ?? ''}`}
-        cardCoverSource={youtubeImagePlaceholder}
+        // cardCoverSource={youtubeImagePlaceholder}
         // cardContinueBtnTitle="Go to category"
         // cardContinueBtnPress={(index) => reactotron.log('cardContinueBtnPress', index)}
         isCancelBtnVisible={false}
@@ -72,7 +60,7 @@ const Home = ({ navigation }: any): JSX.Element => {
     <SafeAreaView style={layout}>
       <FlatList
         contentContainerStyle={flatListContentContainerStyle}
-        data={videoCategoriesData ? videoCategoriesData : []}
+        data={adminMenusArr}
         renderItem={renderVideoCategoriesItem}
       />
     </SafeAreaView>

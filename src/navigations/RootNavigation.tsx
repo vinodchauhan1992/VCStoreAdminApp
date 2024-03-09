@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Auth, Main } from './navigators';
-import { UI, User, useAppDispatch, useAppSelector } from '../states';
+import { UI, LoginState, useAppDispatch, useAppSelector } from '../states';
 import { Splash } from '../screens';
 import config from '../config';
 
@@ -11,7 +11,7 @@ const RootNavigation = (): any => {
   const dispatch = useAppDispatch();
 
   const isToShowSplashScreen = useAppSelector(UI.selectSplashVisibility);
-  const userId = useAppSelector(User.selectUserId);
+  const isUserLoggedIn = useAppSelector(LoginState.selectIsUserLoggedIn);
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,7 +20,7 @@ const RootNavigation = (): any => {
   }, [isToShowSplashScreen, dispatch]);
 
   const navigationStack = (): any => {
-    if (!userId && isToShowSplashScreen) {
+    if (!isUserLoggedIn && isToShowSplashScreen) {
       return (
         <Stack.Navigator>
           <Stack.Screen
@@ -32,7 +32,7 @@ const RootNavigation = (): any => {
       );
     }
 
-    return userId ? <Main /> : <Auth />;
+    return isUserLoggedIn ? <Main /> : <Auth />;
   };
 
   return navigationStack();

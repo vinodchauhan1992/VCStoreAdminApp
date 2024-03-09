@@ -5,6 +5,7 @@ import strings from './strings';
 import { Config } from '../types/config';
 import vectorIcons from './vectorIcons';
 import constants from './constants';
+import env from './env';
 
 const config: Partial<Config> = {
 	constants,
@@ -13,6 +14,7 @@ const config: Partial<Config> = {
 	routes,
 	strings,
 	vectorIcons,
+	env,
 };
 
 export default config as Config;

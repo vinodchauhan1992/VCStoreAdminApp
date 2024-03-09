@@ -1,44 +1,22 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import * as UI from './UI';
-import * as User from './User';
-import * as VideoCategories from './VideoCategories';
-import * as SettingsOptions from './SettingsOptions';
-import * as VideoList from './VideoList';
-import * as SelectedVideoCategory from './SelectedVideoCategory';
-import * as SelectedVideo from './SelectedVideo';
-import * as CommentThreads from './CommentThreads';
-import * as SelectedReplies from './SelectedReplies';
+import * as LoginState from './LoginState';
 import * as ThemeState from './ThemeState';
+import * as SettingsOptions from './SettingsOptions';
+import * as AdminMenusState from './AdminMenusState';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import config from '../config';
 
 const rootReducer = combineReducers({
 	ui: UI.uiSliceReducer,
-	user: User.userSliceReducer,
-	videoCategories: VideoCategories.videoCategoriesSliceReducer,
+	loggedInUser: LoginState.loggedInUserSliceReducer,
 	settingsOptions: SettingsOptions.settingsOptionsSliceReducer,
-	videoList: VideoList.videoListSliceReducer,
-	selectedVideoCategory: SelectedVideoCategory.selectedVideoCategorySliceReducer,
-	selectedVideo: SelectedVideo.selectedVideoSliceReducer,
-	commentThreads: CommentThreads.commentThreadsSliceReducer,
-	selectedReplies: SelectedReplies.selectedRepliesSliceReducer,
+	adminMenu: AdminMenusState.adminMenuSliceReducer,
 	themeState: ThemeState.themeStateSliceReducer,
 });
 
-export {
-	rootReducer,
-	UI,
-	User,
-	VideoCategories,
-	SettingsOptions,
-	VideoList,
-	SelectedVideoCategory,
-	SelectedVideo,
-	CommentThreads,
-	SelectedReplies,
-	ThemeState,
-};
+export { rootReducer, UI, LoginState, ThemeState, SettingsOptions, AdminMenusState };
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof rootReducer>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}

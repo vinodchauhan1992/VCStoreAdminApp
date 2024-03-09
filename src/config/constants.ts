@@ -1,23 +1,3 @@
 export default {
-	oauthWebClientID: '136864934047-rfq3sopcd1qut75osk27pd00c30qjcrl.apps.googleusercontent.com',
-	oauthOfflineAccess: true,
-	forceCodeForRefreshToken: true,
-	oauthIOSClientID: '136864934047-fsofn5n3rtvk77r27n1seoqke6pn75jk.apps.googleusercontent.com',
-	googleProfileImageSize: 540,
-	googleAuthScopes: [
-		'openid',
-		'https://www.googleapis.com/auth/userinfo.email',
-		'https://www.googleapis.com/auth/userinfo.profile',
-		'https://www.googleapis.com/auth/youtube.download',
-		'https://www.googleapis.com/auth/youtube.readonly',
-		'https://www.googleapis.com/auth/youtube',
-		'https://www.googleapis.com/auth/youtube.force-ssl',
-		'https://www.googleapis.com/auth/youtubepartner',
-		'https://www.googleapis.com/auth/youtube.upload',
-		'https://www.googleapis.com/auth/youtube.channel-memberships.creator',
-	],
-	apiBaseUrl: 'https://www.googleapis.com/youtube/v3/',
-	apiKey: 'AIzaSyClnV_leIsOWBEtau_suDZHKOCLIwXQ2xw',
 	profileAvatarImageSize: 120,
-	videoListMaxResults: 50,
 };

@@ -3,16 +3,15 @@ import { FlatList, SafeAreaView, View } from 'react-native';
 import SettingsStyles from './SettingsStyles';
 import { Button, Text, useTheme } from 'react-native-paper';
 import {
+  LoginState,
   SettingsOptions,
   ThemeState,
   UI,
-  User,
   useAppDispatch,
   useAppSelector,
 } from '../../states';
-import { VCYCard } from '../../components';
+import { VCSACard } from '../../components';
 import { SettingsModel } from '../../model/SettingsModel';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const Settings = ({ navigation }: any): JSX.Element => {
   const theme = useTheme();
@@ -30,17 +29,7 @@ const Settings = ({ navigation }: any): JSX.Element => {
   const isDarkThemeSelected = useAppSelector(ThemeState.selectSettingsTheme);
 
   const onPressSignout = async () => {
-    dispatch(UI.showLoader(true));
-    try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-      dispatch(UI.showLoader(false));
-      dispatch(User.saveUser({}));
-    } catch (error) {
-      console.error(error);
-      dispatch(UI.showLoader(false));
-      dispatch(User.saveUser({}));
-    }
+    dispatch(LoginState.saveLoggedInUser(null));
   };
 
   const renderVideoCategoriesItem = ({ item, index }: { item: SettingsModel; index: number }) => {
@@ -55,7 +44,7 @@ const Settings = ({ navigation }: any): JSX.Element => {
       );
     }
     return (
-      <VCYCard
+      <VCSACard
         key={`${index.toString()}`}
         index={index}
         cardTitle={item?.title ?? ''}

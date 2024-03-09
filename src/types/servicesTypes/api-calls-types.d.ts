@@ -1,3 +1,5 @@
+import { ApiContentType } from './api-service-types';
+
 export interface ApiCallsProps {
 	/* as a string for type of api and fetched from apiCallTypes */
 	apiType: string;
@@ -8,4 +10,5 @@ export interface ApiCallsReturnProps {
 	requestType: string;
 	/* as a string for container url of api request */
 	requestUrl: string;
+	contentType: ApiContentType;
 }
