@@ -7,8 +7,9 @@ import * as AdminMenusState from './AdminMenusState';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import config from '../config';
+import { MainStateTypes } from '../types/statesTypes';
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers<any>({
 	ui: UI.uiSliceReducer,
 	loggedInUser: LoginState.loggedInUserSliceReducer,
 	settingsOptions: SettingsOptions.settingsOptionsSliceReducer,
